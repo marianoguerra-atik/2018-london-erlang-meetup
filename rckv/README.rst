@@ -32,6 +32,34 @@ Try
     1> rckv:ping().
     {pong,753586781748746817198774991869333432010090217472}
 
+.. code-block: erlang
+
+    Bucket = <<"mybucket">>.
+    Key1 = <<"mykey">>.
+    Val1 = <<"myvalue">>.
+
+    rckv:get({Bucket, Key1}).
+    % {not_found,707914855582156101004909840846949587645842325504,
+    %            {<<"mybucket">>,<<"mykey">>}}
+
+    rckv:put({Bucket, Key1}, Val1).
+    % {ok,707914855582156101004909840846949587645842325504}
+
+    rckv:get({Bucket, Key1}).
+    % {found,707914855582156101004909840846949587645842325504,
+    %        {{<<"mybucket">>,<<"mykey">>},
+    %               {{<<"mybucket">>,<<"mykey">>},<<"myvalue">>}}}
+
+    rckv:delete({Bucket, Key1}).
+    % {found,707914855582156101004909840846949587645842325504,
+    %        {{<<"mybucket">>,<<"mykey">>},
+    %               {{<<"mybucket">>,<<"mykey">>},<<"myvalue">>}}}
+
+    rckv:get({Bucket, Key1}).
+    % {not_found,707914855582156101004909840846949587645842325504,
+    %            {<<"mybucket">>,<<"mykey">>}}
+
+
 Quit
 ----
 
