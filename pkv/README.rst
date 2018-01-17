@@ -59,6 +59,21 @@ Ping node2 from node1 using partisan::
     % check logs/console on node2, you should see:
     got msg ping
 
+.. code-block: erlang
+
+    Bucket = <<"mybucket">>.
+    Key1 = <<"mykey">>.
+    Val1 = <<"myvalue">>.
+
+    pkv:get(Bucket, Key1).
+    % {ok,[]}
+
+    pkv:set(Bucket, Key1, Val1).
+    % ok
+
+    pkv:get(Bucket, Key1).
+    % {ok,[['pkv1@127.0.0.1',<<"myvalue">>]]}
+
 Quit
 ----
 
